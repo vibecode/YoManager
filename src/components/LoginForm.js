@@ -33,9 +33,7 @@ class LoginForm extends Component {
             />
           </CardSection>
 
-          <CardSection>
-
-          </CardSection>
+          <Button>Login</Button>
         </Card>
     )
   }
