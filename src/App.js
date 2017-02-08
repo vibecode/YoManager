@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import * as firebase from 'firebase';
 import firebaseConfig from './firebaseconfig';
@@ -13,7 +14,7 @@ class App extends Component {
   }
 
   render() {
-    const store = createStore(reducers);
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
     return (
         <Provider store={store}>
