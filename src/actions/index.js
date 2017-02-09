@@ -1,6 +1,7 @@
 import {
   EMAIL_CHANGED,
-  PASSWORD_CHANGED
+  PASSWORD_CHANGED,
+  LOGIN_USER_SUCCESS
 } from './types';
 import * as firebase from 'firebase';
 
