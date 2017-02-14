@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import { CardSection } from './common';
 
 class ListItem extends Component {
@@ -16,11 +16,12 @@ class ListItem extends Component {
     )
   }
 }
-const styles = {
+
+const styles = StyleSheet.create({
   nameStyle: {
     fontSize: 18,
     paddingLeft: 15
   }
-};
+});
 
 export default ListItem;

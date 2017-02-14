@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 import { Card, Button, Input, CardSection, Spinner } from './common';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
@@ -70,14 +70,14 @@ class LoginForm extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   errorTextStyle: {
     fontSize: 20,
     color: 'red',
     textAlign: 'center',
     marginBottom: 15
   }
-};
+});
 
 const mapStateToProps = ({auth}) => {
   const {email, password, error, loading} = auth;

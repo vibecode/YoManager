@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardSection, Input, Button } from './common';
-import { Picker, Text } from 'react-native';
+import { Picker, Text, StyleSheet } from 'react-native';
 import { updateEmployee, createEmployee } from '../actions'
 import { connect } from 'react-redux';
 
@@ -63,14 +63,14 @@ class CreateEmployee extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   pickerLabelStyle: {
     fontSize: 18,
     paddingBottom: 6,
     paddingLeft: 16,
     color: '#ddd'
   }
-};
+});
 
 const mapStateToProps = (state) => {
   const {name, phone, shift} = state.employeeForm;

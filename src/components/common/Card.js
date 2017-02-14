@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet} from 'react-native';
 
 export const Card = (props) => {
   return (
@@ -9,7 +9,7 @@ export const Card = (props) => {
   );
 };
 
-const styles = {
+const styles = StyleSheet.create({
   containerStyle: {
     borderRadius: 6,
     borderWidth: 1,
@@ -25,4 +25,4 @@ const styles = {
     marginRight: 8,
     marginTop: 12,
   }
-};
+});
