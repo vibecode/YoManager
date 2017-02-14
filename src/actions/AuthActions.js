@@ -33,14 +33,12 @@ export const loginUser = ({email, password}) => {
 };
 
 const loginUserFail = (dispatch) => {
-  console.log('fail');
   dispatch({
     type: LOGIN_USER_FAIL
   })
 };
 
 const loginUserSuccess = (dispatch, user) => {
-  console.log('yo');
   dispatch({
     type: LOGIN_USER_SUCCESS,
     payload: user
