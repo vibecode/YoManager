@@ -32,13 +32,25 @@ export const saveEmployee = ({name, phone, shift, uid}) => {
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
-        .set({name, phone, shift})
-        .then(() => {
-          dispatch({type: SAVE_EMPLOYEE_SUCCESS});
-          Actions.employeeList({type: 'reset'});
-        });
+            .set({name, phone, shift})
+            .then(() => {
+              dispatch({type: SAVE_EMPLOYEE_SUCCESS});
+              Actions.employeeList({type: 'reset'});
+            });
   }
 
+};
+
+export const deleteEmployee = ({uid}) => {
+  const {currentUser} = firebase.auth();
+
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+            .remove()
+            .then(() => {
+              Actions.employeeList({type: 'reset'});
+            })
+  };
 };
 
 export const fetchEmployees = () => {
@@ -46,8 +58,8 @@ export const fetchEmployees = () => {
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees`)
-        .on('value', (snapshot) => {
-          dispatch({type: FETCH_EMPLOYEE_SUCCESS, payload: snapshot.val()})
-        });
+            .on('value', (snapshot) => {
+              dispatch({type: FETCH_EMPLOYEE_SUCCESS, payload: snapshot.val()})
+            });
   }
 };
