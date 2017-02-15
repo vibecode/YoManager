@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet } from 'react-native';
-import { CardSection } from './common';
+import { Text, StyleSheet, View } from 'react-native';
 
 class ListItem extends Component {
 
@@ -8,11 +7,11 @@ class ListItem extends Component {
     const { name } = this.props.employee;
 
     return (
-        <CardSection>
+        <View style={styles.sectionStyle}>
           <Text style={styles.nameStyle}>
             {name}
           </Text>
-        </CardSection>
+        </View>
     )
   }
 }
@@ -20,7 +19,11 @@ class ListItem extends Component {
 const styles = StyleSheet.create({
   nameStyle: {
     fontSize: 18,
-    paddingLeft: 15
+  },
+  sectionStyle: {
+    padding: 16,
+    borderBottomColor: '#ddd',
+    borderBottomWidth: 1
   }
 });
 
