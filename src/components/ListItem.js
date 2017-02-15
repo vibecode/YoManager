@@ -3,9 +3,13 @@ import { Text, StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 class ListItem extends Component {
+  constructor(props) {
+    super(props);
+    this.onRowPress = this.onRowPress.bind(this);
+  }
 
   onRowPress() {
-    Actions.createEmployee({employee: this.props.employee});
+    Actions.editEmployee({employee: this.props.employee});
   }
 
   render() {

@@ -2,7 +2,6 @@ import { UPDATE_EMPLOYEE, CREATE_EMPLOYEE, FETCH_EMPLOYEE_SUCCESS } from './type
 import * as firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 
-
 export const updateEmployee = ({prop, value}) => {
   return {
     type: UPDATE_EMPLOYEE,
@@ -21,6 +20,17 @@ export const createEmployee = ({name, phone, shift}) => {
               Actions.employeeList({type: 'reset'})
             });
   }
+};
+
+export const saveEmployee = ({name, phone, shift, uid}) => {
+  const {currentUser} = firebase.auth();
+
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+        .set({name, phone, shift})
+        .then(() => console.log('Succcsss'));
+  }
+
 };
 
 export const fetchEmployees = () => {
