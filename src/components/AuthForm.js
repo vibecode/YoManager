@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { Card, Button, Input, CardSection, Spinner, RowContainer } from './common';
-import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
-class LoginForm extends Component {
+class AuthForm extends Component {
   constructor(props) {
     super(props);
     this.onEmailChange = this.onEmailChange.bind(this);
@@ -71,6 +70,8 @@ class LoginForm extends Component {
   }
 }
 
+export default AuthForm;
+
 const styles = StyleSheet.create({
   errorTextStyle: {
     fontSize: 20,
@@ -79,16 +80,3 @@ const styles = StyleSheet.create({
     marginBottom: 15
   }
 });
-
-const mapStateToProps = ({auth}) => {
-  const {email, password, error, loading} = auth;
-
-  return {
-    email,
-    password,
-    error,
-    loading
-  }
-};
-
-export default connect(mapStateToProps, {emailChanged, passwordChanged, loginUser})(LoginForm);
