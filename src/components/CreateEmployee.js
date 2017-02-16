@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button } from './common';
+import { Card, Button, RowContainer } from './common';
 import { updateEmployee, createEmployee } from '../actions'
 import { connect } from 'react-redux';
 import EmployeeForm from './EmployeeForm';
@@ -20,9 +20,11 @@ class CreateEmployee extends Component {
     return (
         <Card>
           <EmployeeForm {...this.props} />
-          <Button onPress={this.onButtonPress}>
-            Create
-          </Button>
+          <RowContainer>
+            <Button onPress={this.onButtonPress}>
+              Create
+            </Button>
+          </RowContainer>
         </Card>
 
     )

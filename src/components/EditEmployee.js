@@ -3,8 +3,8 @@ import _ from 'lodash';
 import Communications from 'react-native-communications';
 import EmployeeForm from './EmployeeForm';
 import { updateEmployee, saveEmployee, deleteEmployee } from '../actions';
-import { Card, Button, Confirm } from './common';
-import { View } from 'react-native';
+import { Card, Button, Confirm, RowContainer } from './common';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
 class EditEmployee extends Component {
@@ -57,25 +57,36 @@ class EditEmployee extends Component {
   }
 
   render() {
+    const {textStyle, borderStyle} = styles;
     return (
         <View>
           <Card>
             <EmployeeForm />
-            <Button onPress={this.onButtonPress}>
-              Save Changes
-            </Button>
+            <RowContainer>
+              <Button onPress={this.onButtonPress}>
+                Save Changes
+              </Button>
+            </RowContainer>
           </Card>
 
           <Card>
-            <Button onPress={this.onTextPress}>
-              Send Message
-            </Button>
+            <RowContainer>
+              <Button onPress={this.onTextPress}>
+                Send Message
+              </Button>
+            </RowContainer>
           </Card>
 
           <Card>
-            <Button onPress={this.onDeletePress}>
-              Delete employee
-            </Button>
+            <RowContainer>
+              <Button
+                  borderStyle={borderStyle}
+                  textStyle={textStyle}
+                  onPress={this.onDeletePress}
+              >
+                Delete employee
+              </Button>
+            </RowContainer>
           </Card>
 
           <Confirm
@@ -83,16 +94,26 @@ class EditEmployee extends Component {
               onAccept={this.onAccept}
               onDecline={this.onDecline}
           >
-            This will delete the record. Are you sure?
+            This will delete all employee data.{'\n'}Are you sure?
           </Confirm>
         </View>
     )
   }
 }
 
+const styles = StyleSheet.create({
+  borderStyle: {
+    borderColor: 'red',
+  },
+  textStyle: {
+    color: 'red',
+  }
+});
+
 const mapStateToProps = (state) => {
   const {name, phone, shift} = state.employeeForm;
 
   return {name, phone, shift};
 };
+
 export default connect(mapStateToProps, {updateEmployee, saveEmployee, deleteEmployee})(EditEmployee);

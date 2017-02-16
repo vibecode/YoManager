@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Text, View, Modal, StyleSheet } from 'react-native';
-import { CardSection } from './CardSection';
 import { Button } from './Button';
 
 export const Confirm = ({children, isVisible, onAccept, onDecline}) => {
@@ -14,13 +13,13 @@ export const Confirm = ({children, isVisible, onAccept, onDecline}) => {
           onRequestClose={() => {}}
       >
         <View style={containerStyle}>
-          <CardSection style={cardSectionStyle}>
-            <Text style={textStyle}>{children}</Text>
-          </CardSection>
-          <CardSection>
+          <View style={cardSectionStyle}>
+                <Text style={textStyle}>{children}</Text>
+          </View>
+          <View style={cardSectionStyle}>
             <Button onPress={onAccept}>Yes</Button>
             <Button onPress={onDecline}>No</Button>
-          </CardSection>
+          </View>
         </View>
       </Modal>
   )
@@ -28,19 +27,26 @@ export const Confirm = ({children, isVisible, onAccept, onDecline}) => {
 
 const styles = StyleSheet.create({
   cardSectionStyle: {
+    marginBottom: 0,
+    padding: 18,
+    backgroundColor: '#fff',
     justifyContent: 'center',
-    marginBottom: 0
+    borderColor: '#ddd',
+    position: 'relative',
+    flexDirection: 'row'
   },
   textStyle: {
     flex: 1,
     fontSize: 18,
     textAlign: 'center',
-    lineHeight: 18
+    lineHeight: 18,
+    color: '#007aff'
   },
   containerStyle: {
-    backgroundColor: 'rgba(0, 0, 0, .7)',
-    position: 'relative',
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 18,
+    backgroundColor: 'rgba(0, 0, 0, .4)',
+    position: 'relative'
   }
 });
