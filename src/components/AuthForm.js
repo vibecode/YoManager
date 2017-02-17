@@ -8,7 +8,6 @@ class AuthForm extends Component {
     super(props);
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
-    this.onButtonPress = this.onButtonPress.bind(this);
   }
 
   onEmailChange(text) {
@@ -19,20 +18,14 @@ class AuthForm extends Component {
     this.props.passwordChanged(text);
   }
 
-  onButtonPress() {
-    const {email, password} = this.props;
-
-    this.props.loginUser({email, password});
-  }
-
   renderButton() {
     if (this.props.loading) {
       return <Spinner size="large" />
     }
 
     return (
-        <Button onPress={this.onButtonPress}>
-          Login
+        <Button onPress={this.props.onButtonPress}>
+          {this.props.buttonText}
         </Button>
     )
   }

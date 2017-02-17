@@ -1,21 +1,42 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { Card, Button, Input, CardSection, Spinner, RowContainer } from './common';
+import { Card, Button, RowContainer } from './common';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import AuthForm  from'./AuthForm';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 class LoginScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.onSignUpPress = this.onSignUpPress.bind(this);
+    this.onLoginPress = this.onLoginPress.bind(this);
+  }
+
+  onSignUpPress() {
+    Actions.signUp();
+  }
+
+  onLoginPress() {
+    const {email, password} = this.props;
+
+    this.props.loginUser({email, password});
+  }
+
   render() {
     return (
         <View>
-          <AuthForm {...this.props} />
+          <AuthForm
+              {...this.props}
+              onButtonPress={this.onLoginPress}
+              buttonText="Log In"
+          />
           <Card>
             <Text style={styles.textStyle}>
               Don't have an account?
             </Text>
             <RowContainer>
-              <Button>
+              <Button onPress={this.onSignUpPress}>
                 Sign Up
               </Button>
             </RowContainer>

@@ -23,7 +23,8 @@ export const createEmployee = ({name, phone, shift}) => {
             .then(() => {
               dispatch({type: CREATE_EMPLOYEE});
               Actions.employeeList({type: 'reset'})
-            });
+            }); //TODO catch error
+
   }
 };
 
@@ -37,6 +38,7 @@ export const saveEmployee = ({name, phone, shift, uid}) => {
               dispatch({type: SAVE_EMPLOYEE_SUCCESS});
               Actions.employeeList({type: 'reset'});
             });
+            //TODO catch error
   }
 
 };
@@ -49,7 +51,8 @@ export const deleteEmployee = ({uid}) => {
             .remove()
             .then(() => {
               Actions.employeeList({type: 'reset'});
-            })
+            });
+            //TODO catch error
   };
 };
 
@@ -61,5 +64,6 @@ export const fetchEmployees = () => {
             .on('value', (snapshot) => {
               dispatch({type: FETCH_EMPLOYEE_SUCCESS, payload: snapshot.val()})
             });
+            //TODO catch error
   }
 };
