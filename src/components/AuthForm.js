@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { Card, Button, Input, CardSection, Spinner, RowContainer } from './common';
-import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class AuthForm extends Component {
   constructor(props) {
