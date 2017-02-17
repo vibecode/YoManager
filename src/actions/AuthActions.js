@@ -4,7 +4,8 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  CREATE_USER
+  CREATE_USER,
+  CREATE_USER_FAIL
 } from './types';
 import * as firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
@@ -23,6 +24,16 @@ export const passwordChanged = (text) => {
   }
 };
 
+export const createUser = ({email, password}) => {
+  return (dispatch) => {
+    dispatch({type: CREATE_USER});
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then((user) => loginUserSuccess(dispatch, user))
+            .catch(() => createUserFail(dispatch));
+  }
+};
+
 export const loginUser = ({email, password}) => {
   return (dispatch) => {
     dispatch({type: LOGIN_USER});
@@ -31,6 +42,12 @@ export const loginUser = ({email, password}) => {
             .then((user) => loginUserSuccess(dispatch, user))
             .catch(() => loginUserFail(dispatch))
   }
+};
+
+const createUserFail = (dispatch) => {
+  dispatch({
+    type: CREATE_USER_FAIL
+  })
 };
 
 const loginUserFail = (dispatch) => {
@@ -48,12 +65,3 @@ const loginUserSuccess = (dispatch, user) => {
   Actions.main();
 };
 
-export const createUser = ({email, password}) => {
-  return (dispatch) => {
-    dispatch({type: CREATE_USER});
-
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then((user) => loginUserSuccess(dispatch, user))
-            .catch(() => loginUserFail(dispatch)); //TODO catch this case specific error
-  }
-};

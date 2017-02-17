@@ -3,6 +3,7 @@ import  {
   PASSWORD_CHANGED,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
+  CREATE_USER_FAIL,
   LOGIN_USER,
   CREATE_USER
 } from '../actions/types';
@@ -28,6 +29,8 @@ export default (state = INITIAL_STATE, action) => {
       return {...state, errorAuth: 'Authentication failed', password: '', loading: false};
     case CREATE_USER:
       return {...state, loading: true, error: ''};
+    case CREATE_USER_FAIL:
+      return {...state, errorCreateUser: 'Account creation failed', password: '', loading: false};
     default:
       return state;
   }

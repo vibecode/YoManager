@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import { View, Text, Picker, StyleSheet } from 'react-native';
 import { CardSection, Input } from './common';
 import { connect } from 'react-redux';
 import { updateEmployee } from '../actions';
 
 class EmployeeForm extends Component {
+  componentWillUnmount() {
+    _.each()
+  }
+
   render() {
     return (
         <View>

@@ -21,17 +21,18 @@ class SignUpScreen extends Component {
         {...this.props}
         onButtonPress={this.onSignUpPress}
         buttonText="Sign up"
+        error={this.props.errorCreateUser}
     />
   }
 }
 
 const mapStateToProps = ({auth}) => {
-  const {email, password, error, loading} = auth;
+  const {email, password, errorCreateUser, loading} = auth;
 
   return {
     email,
     password,
-    error,
+    errorCreateUser,
     loading
   }
 };

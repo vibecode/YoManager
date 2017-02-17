@@ -30,6 +30,7 @@ class LoginScreen extends Component {
               {...this.props}
               onButtonPress={this.onLoginPress}
               buttonText="Log In"
+              error={this.props.errorAuth}
           />
           <Card>
             <Text style={styles.textStyle}>
@@ -56,12 +57,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({auth}) => {
-  const {email, password, error, loading} = auth;
+  const {email, password, errorAuth, loading} = auth;
 
   return {
     email,
     password,
-    error,
+    errorAuth,
     loading
   }
 };
