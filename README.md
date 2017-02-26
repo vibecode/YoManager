@@ -1,5 +1,5 @@
 # YoManager
- Employees manager app built with React Native, Redux and Firebase
+Simple CRUD mobile app example built with React Native, Redux and Firebase
  
 1. `yarn install`
 
